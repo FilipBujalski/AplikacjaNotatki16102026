@@ -1,0 +1,2 @@
+# AplikacjaNotatki16102026
+
