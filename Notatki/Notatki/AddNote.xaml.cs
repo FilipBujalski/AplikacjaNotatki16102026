@@ -19,12 +19,6 @@ namespace Notatki
                 this.DragMove();
         }
 
-        private void CloseApp_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = false;
-            this.Close();
-        }
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

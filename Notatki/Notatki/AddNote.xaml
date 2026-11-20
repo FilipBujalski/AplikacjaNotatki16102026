@@ -5,211 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Notatki"
         mc:Ignorable="d"
-        Title="Nowa notatka" Height="420" Width="480"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent"
-        FontFamily="Segoe UI, -apple-system, BlinkMacSystemFont, sans-serif">
+        Title="Nowa notatka" Height="420" Width="480">
 
-    <Window.Resources>
-        <Style x:Key="AeroPrimaryButton" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="16,8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid x:Name="ButtonGrid">
-                            <Border CornerRadius="9" Background="#35001A33" Margin="0,2,0,-1"/>
-                            <Border x:Name="border" CornerRadius="9" BorderThickness="1">
-                                <Border.BorderBrush>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                        <GradientStop Color="#C1E1FF" Offset="0"/>
-                                        <GradientStop Color="#004C99" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.BorderBrush>
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                        <GradientStop Color="#4DA4FF" Offset="0.0"/>
-                                        <GradientStop Color="#0073E6" Offset="0.48"/>
-                                        <GradientStop Color="#0057B8" Offset="0.50"/>
-                                        <GradientStop Color="#006AD5" Offset="1.0"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
+    <DockPanel Margin="16">
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,16" MouseDown="Header_MouseDown">
+            <TextBlock Text="Nowa notatka"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="14"/>
+        </DockPanel>
 
-                                <Grid>
-                                    <Border CornerRadius="8,8,12,12" Height="13" VerticalAlignment="Top" Margin="1,1,1,0">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                <GradientStop Color="#B0FFFFFF" Offset="0"/>
-                                                <GradientStop Color="#15FFFFFF" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+            <Button Content="Anuluj" Width="90" Padding="8,6" Margin="0,0,8,0" Click="Cancel_Click"/>
+            <Button Content="Zapisz" Width="90" Padding="8,6" Click="Save_Click"/>
+        </StackPanel>
 
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,1">
-                                        <ContentPresenter.Effect>
-                                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Direction="270" Color="#60000000"/>
-                                        </ContentPresenter.Effect>
-                                    </ContentPresenter>
-                                </Grid>
-                            </Border>
-                        </Grid>
+        <StackPanel>
+            <TextBlock Text="Tytuł" FontWeight="Bold" Margin="0,0,0,6"/>
+            <TextBox x:Name="TitleTextBox" Padding="6" Margin="0,0,0,14"/>
 
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#0073E6"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonGrid" Property="Margin" Value="0,1,0,-1"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="AeroSecondaryButton" TargetType="Button">
-            <Setter Property="Foreground" Value="#1C2D42"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="16,8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid x:Name="ButtonGrid">
-                            <Border CornerRadius="9" Background="#20000000" Margin="0,2,0,-1"/>
-                            <Border x:Name="border" CornerRadius="9" BorderThickness="1" BorderBrush="#A3BCCD">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                        <GradientStop Color="#FFFFFF" Offset="0.0"/>
-                                        <GradientStop Color="#F1F5F9" Offset="0.48"/>
-                                        <GradientStop Color="#DCE6F1" Offset="0.50"/>
-                                        <GradientStop Color="#E5EEF7" Offset="1.0"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                                <Grid>
-                                    <Border CornerRadius="8,8,12,12" Height="12" VerticalAlignment="Top" Margin="1,1,1,0" Background="#C8FFFFFF"/>
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#0073E6"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonGrid" Property="Margin" Value="0,1,0,-1"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#B8CEE2"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Foreground" Value="#1E324A"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#4DA4FF"/>
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#0073E6"/>
-                                <Setter TargetName="border" Property="BorderThickness" Value="1.5"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-
-    <Border CornerRadius="16" BorderBrush="#B0FFFFFF" BorderThickness="1.5" Margin="10">
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#EAF2FB" Offset="0.0"/>
-                <GradientStop Color="#C2D9EE" Offset="0.5"/>
-                <GradientStop Color="#E3EDF8" Offset="1.0"/>
-            </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="25" ShadowDepth="8" Direction="270" Color="#40001530"/>
-        </Border.Effect>
-
-        <Grid>
-            <DockPanel Margin="16">
-                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,16" MouseDown="Header_MouseDown">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Left">
-                        <Button Click="CloseApp_Click" Width="13" Height="13" Margin="0,0,7,0" Cursor="Hand">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Ellipse Fill="#FF5F56" Stroke="#E0443E" StrokeThickness="1"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Width="13" Height="13" Margin="0,0,7,0">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Ellipse Fill="#FFBD2E" Stroke="#DEA123" StrokeThickness="1"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Width="13" Height="13">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Ellipse Fill="#27C93F" Stroke="#1AAB29" StrokeThickness="1"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
-
-                    <TextBlock Text="Nowa notatka" 
-                               HorizontalAlignment="Center" 
-                               VerticalAlignment="Center" 
-                               FontWeight="Bold" 
-                               FontSize="13" 
-                               Foreground="#2C3E50">
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#80FFFFFF"/>
-                        </TextBlock.Effect>
-                    </TextBlock>
-                </DockPanel>
-
-                <StackPanel DockPanel.Dock="Bottom" 
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" 
-                            Margin="0,16,0,0">
-                    <Button Content="Anuluj" Style="{StaticResource AeroSecondaryButton}" Width="95" Margin="0,0,10,0" Click="Cancel_Click"/>
-                    <Button Content="Zapisz" Style="{StaticResource AeroPrimaryButton}" Width="95" Click="Save_Click"/>
-                </StackPanel>
-
-                <StackPanel>
-                    <TextBlock Text="Tytuł" FontWeight="Bold" Foreground="#1E324A" Margin="0,0,0,6"/>
-                    <TextBox x:Name="TitleTextBox" Margin="0,0,0,14"/>
-
-                    <TextBlock Text="Treść" FontWeight="Bold" Foreground="#1E324A" Margin="0,0,0,6"/>
-                    <TextBox x:Name="DescriptionTextBox" Height="150" AcceptsReturn="True" TextWrapping="Wrap"/>
-                </StackPanel>
-            </DockPanel>
-        </Grid>
-    </Border>
+            <TextBlock Text="Treść" FontWeight="Bold" Margin="0,0,0,6"/>
+            <TextBox x:Name="DescriptionTextBox" Height="150" Padding="6" AcceptsReturn="True" TextWrapping="Wrap"/>
+        </StackPanel>
+    </DockPanel>
 </Window>
