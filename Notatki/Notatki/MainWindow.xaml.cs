@@ -38,11 +38,6 @@ namespace Notatki
                 this.DragMove();
         }
 
-        private void CloseApp_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddNote addNoteWindow = new AddNote();
